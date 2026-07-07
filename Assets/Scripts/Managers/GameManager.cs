@@ -34,11 +34,11 @@ public class GameManager : Singleton<GameManager>
     }
     public enum GodState
     {
-        Delighted,
-        Satisfied,
-        Neutral,
+        Furious,
         Unsatisfied,
-        Furious
+        Neutral,
+        Satisfied,
+        Delighted
     }
     #endregion
 
@@ -50,7 +50,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Camera _playerCamera;
     [Header("GOD POINTS")]
     [SerializeField] private float _actualGodPoints;
-    private float _defaultGodPointsGoal;
     private float _goalPercentage;
     [SerializeField] private float _actualGodPointsGoal;
     [SerializeField] private float[] _godPointsGoals;
@@ -151,7 +150,6 @@ public class GameManager : Singleton<GameManager>
     }
     private void PlayerDied()
     {
-        Debug.Log("El jugador ha muerto, se saltará hasta el próximo día");
         if (ActualGodState == GodState.Furious)
         {
             EndGame();
@@ -173,10 +171,14 @@ public class GameManager : Singleton<GameManager>
     }
     private void NewDay(int day)
     {
-        if (GameTimeManager.Day > _godPointsGoals.Length)
-            _actualGodPointsGoal = _defaultGodPointsGoal;
+        if (GameTimeManager.Day >= _godPointsGoals.Length)
+        {
+            _actualGodPointsGoal = _godPointsGoals[_godPointsGoals.Length-1];
+        }
         else
+        {
             _actualGodPointsGoal = _godPointsGoals[GameTimeManager.Day];
+        }
 
         if (GameTimeManager.Timelapse)
         {
@@ -184,10 +186,13 @@ public class GameManager : Singleton<GameManager>
             GameUIController.DeathText.SetActive(false);
             GameUIController.ShowInGameMenu();
         }
-        if (_spawnerDayRewards[day] != null && ActualGodState >= GodState.Neutral)
+        if (ActualGodState >= GodState.Neutral && day < _spawnerDayRewards.Length - 1)
         {
-            _rewardSpawner.Spawn(_spawnerDayRewards[day]);
-            GameUIController.ShowCrafterText("Recompensa! Has obtenido " + _spawnerDayRewards[day].name);
+            if (_spawnerDayRewards[day]!=null)
+            {
+                _rewardSpawner.Spawn(_spawnerDayRewards[day]);
+                GameUIController.ShowCrafterText("Recompensa! Has obtenido " + _spawnerDayRewards[day].name);
+            }
         }
         ResetGodPoints();
     }

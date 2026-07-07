@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultSpawnsPerDay: 3
-  _maxSpawnsPerDay: 10
+  _maxSpawnsPerDay: 6
   _items:
   - {fileID: 2429653587875769529, guid: e0152d92d2cdda7479027a4cfc7f5c34, type: 3}
   - {fileID: 5412594885781262589, guid: 9d9264ab9c8bdda4d9d60f3955f7943e, type: 3}
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultSpawnsPerDay: 3
-  _maxSpawnsPerDay: 10
+  _maxSpawnsPerDay: 6
   _items:
   - {fileID: 2429653587875769529, guid: e0152d92d2cdda7479027a4cfc7f5c34, type: 3}
   - {fileID: 5412594885781262589, guid: 9d9264ab9c8bdda4d9d60f3955f7943e, type: 3}
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultSpawnsPerDay: 3
-  _maxSpawnsPerDay: 10
+  _maxSpawnsPerDay: 6
   _items:
   - {fileID: 2429653587875769529, guid: e0152d92d2cdda7479027a4cfc7f5c34, type: 3}
   - {fileID: 5412594885781262589, guid: 9d9264ab9c8bdda4d9d60f3955f7943e, type: 3}
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultSpawnsPerDay: 3
-  _maxSpawnsPerDay: 10
+  _maxSpawnsPerDay: 6
   _items:
   - {fileID: 2429653587875769529, guid: e0152d92d2cdda7479027a4cfc7f5c34, type: 3}
   - {fileID: 5412594885781262589, guid: 9d9264ab9c8bdda4d9d60f3955f7943e, type: 3}

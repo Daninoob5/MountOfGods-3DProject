@@ -86,8 +86,17 @@ public class Player : HealthSystem
                 {
                     _resourceDetected = resource;
                 }
+                else
+                {
+                    _resourceDetected = null;
+                }
             }
 
+        }
+        else
+        {
+            _resourceDetected = null;
+            _itemDetected = null;
         }
     }
     #endregion
@@ -140,7 +149,6 @@ public class Player : HealthSystem
     }
     public void ResetPlayer()
     {
-        Debug.Log("Teleportando al jugador a: "+_spawnPosition.x +", "+ _spawnPosition.y +", "+_spawnPosition.z);
         Heal(MaxHealth);
         CharacterController characterController = gameObject.GetComponent<CharacterController>();
         characterController.enabled = false;
