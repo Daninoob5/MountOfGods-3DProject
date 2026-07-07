@@ -1,0 +1,218 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2676783985373406585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6514654092457432203}
+  - component: {fileID: 869387924967393888}
+  m_Layer: 0
+  m_Name: RockSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6514654092457432203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2676783985373406585}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7928282533618072278}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &869387924967393888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2676783985373406585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8349205f8bf8f5d4da7bdad359463917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultSpawnsPerDay: 5
+  _maxSpawnsPerDay: 50
+  _resources:
+  - {fileID: 5051101986861060653, guid: 06e6505134a584b45afdcb5c4d590a11, type: 3}
+  - {fileID: 1305186795256927482, guid: 0df4021c269ce4240aa760b350c87cc3, type: 3}
+  - {fileID: 8977617514828918266, guid: 99b04dc7f86428543a4c4fc8dfdc5c9c, type: 3}
+  _spawnArea: {x: 96, y: 96}
+--- !u!1 &4097790007434510800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8404821715283413295}
+  - component: {fileID: 672121817080234688}
+  m_Layer: 0
+  m_Name: StoneSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8404821715283413295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097790007434510800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50, y: 50.5, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7928282533618072278}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &672121817080234688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097790007434510800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149c57fd0b68e694b944f1beb99c4360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultSpawnsPerDay: 10
+  _maxSpawnsPerDay: 40
+  _items:
+  - {fileID: 5326630347255831674, guid: 41104f8cc54142541a58632f204d9908, type: 3}
+  - {fileID: 5326630347255831674, guid: 41104f8cc54142541a58632f204d9908, type: 3}
+  - {fileID: 5326630347255831674, guid: 41104f8cc54142541a58632f204d9908, type: 3}
+  - {fileID: 5326630347255831674, guid: 41104f8cc54142541a58632f204d9908, type: 3}
+  - {fileID: 5326630347255831674, guid: 41104f8cc54142541a58632f204d9908, type: 3}
+  - {fileID: 5326630347255831674, guid: 41104f8cc54142541a58632f204d9908, type: 3}
+  - {fileID: 8111194128494342255, guid: 4c1a828c461aa4f43a2ed1a8e6fc6e88, type: 3}
+  - {fileID: 8111194128494342255, guid: 4c1a828c461aa4f43a2ed1a8e6fc6e88, type: 3}
+  - {fileID: 8111194128494342255, guid: 4c1a828c461aa4f43a2ed1a8e6fc6e88, type: 3}
+  - {fileID: 8111194128494342255, guid: 4c1a828c461aa4f43a2ed1a8e6fc6e88, type: 3}
+  - {fileID: 8111194128494342255, guid: 4c1a828c461aa4f43a2ed1a8e6fc6e88, type: 3}
+  - {fileID: 8111194128494342255, guid: 4c1a828c461aa4f43a2ed1a8e6fc6e88, type: 3}
+  - {fileID: 8111194128494342255, guid: 4c1a828c461aa4f43a2ed1a8e6fc6e88, type: 3}
+  - {fileID: 5892259207263607933, guid: d970d780ad93fb641b32a8417969a001, type: 3}
+  - {fileID: 5892259207263607933, guid: d970d780ad93fb641b32a8417969a001, type: 3}
+  - {fileID: 5892259207263607933, guid: d970d780ad93fb641b32a8417969a001, type: 3}
+  - {fileID: 5892259207263607933, guid: d970d780ad93fb641b32a8417969a001, type: 3}
+  - {fileID: 5892259207263607933, guid: d970d780ad93fb641b32a8417969a001, type: 3}
+  - {fileID: 5892259207263607933, guid: d970d780ad93fb641b32a8417969a001, type: 3}
+  - {fileID: -5425032382526402770, guid: 010f98c25be2a534b8037b443438c56d, type: 3}
+  - {fileID: -5425032382526402770, guid: 010f98c25be2a534b8037b443438c56d, type: 3}
+  - {fileID: -5425032382526402770, guid: 09c6a149e687f234ea6424a5928aa172, type: 3}
+  _spawnRadius: 40
+--- !u!1 &6464068463916323081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7928282533618072278}
+  - component: {fileID: 2420598904640339202}
+  - component: {fileID: 2828666752070325464}
+  m_Layer: 0
+  m_Name: RocksTerrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &7928282533618072278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6464068463916323081}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -176.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6514654092457432203}
+  - {fileID: 8404821715283413295}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!218 &2420598904640339202
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6464068463916323081}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: f72535150c7a7a749850030a54cc67cd, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMinimumLODSimplification: 0
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_IgnoreQualitySettings: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ReceiveGI: 1
+  m_ScaleInLightmap: 0.0256
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
+  m_EnableHeightmapRayTracing: 1
+  m_EnableTreesAndDetailsRayTracing: 0
+  m_TreeMotionVectorModeOverride: 3
+--- !u!154 &2828666752070325464
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6464068463916323081}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_TerrainData: {fileID: 15600000, guid: f72535150c7a7a749850030a54cc67cd, type: 2}
+  m_EnableTreeColliders: 1
