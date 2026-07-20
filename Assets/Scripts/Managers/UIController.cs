@@ -18,10 +18,15 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _interface;
     [SerializeField] private GameObject _inGameMenu;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _connectingPanel;
 
     #endregion
 
     #region Unity Callbacks
+    private void Awake()
+    {
+        ShowConnectingPanel();
+    }
     void Start()
     {
         HideInGameMenu();
@@ -69,6 +74,19 @@ public class UIController : MonoBehaviour
     public void ShowCrafterText(string text)
     {
         _crafterText.text = text;
+    }
+    public void ShowConnectingPanel()
+    {
+        _connectingPanel.SetActive(true);
+        _interface.SetActive(false);
+        _inGameMenu.SetActive(false);
+        _gameOverPanel.SetActive(false);
+
+    }   
+    public void HideConnectingPanel()
+    {
+        _connectingPanel.SetActive(false);
+        _interface.SetActive(true);
     }
     #endregion
 
