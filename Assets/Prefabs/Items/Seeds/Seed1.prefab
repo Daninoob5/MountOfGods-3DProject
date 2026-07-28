@@ -51,9 +51,9 @@ MonoBehaviour:
   Type: 3
   Owner: {fileID: 0}
   _godPoints: 10
-  _holdingDistance: 0.7
-  _followSpeed: 20
   _rb: {fileID: 0}
+  _heldRotation: {x: 0, y: 0, z: 0}
+  _verticalOffSet: 0
   Active: 0
   _trees:
   - {fileID: 340491953165152424, guid: 9810ee10fc2df4445a8e196ce8e435f4, type: 3}

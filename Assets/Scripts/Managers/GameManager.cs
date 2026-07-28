@@ -1,25 +1,34 @@
+using Photon.Pun;
 using StarterAssets;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms;
 
 public class GameManager : Singleton<GameManager>
 {
     #region Properties
     public event Action OnGameOver;
     public GodState ActualGodState;
-    public Player Player1;
+    public Player LocalPlayer;
+    public List<Player> RemotePlayers = new();
     public TimeManager GameTimeManager;
+    public TerrainManager TerrainManager;
+    public NetworkController NetworkController;
     public UIController GameUIController;
     public AudioController GameAudioController;
+    public Camera LocalPlayerCamera;
     public float ActualGodPoints
     {
         get
         {
             return (_actualGodPoints);
         }
-        private set
+        set
         {
             if (value>0)
             {
@@ -43,11 +52,10 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region Fields
-    [SerializeField] private TerrainManager _terrainManager;
     [SerializeField] private HolyLava _holyLava;
+    [SerializeField] private int _localPlayerViewID;
     [Header("CAMERAS")]
     [SerializeField] private Camera _timelapseCamera;
-    [SerializeField] private Camera _playerCamera;
     [Header("GOD POINTS")]
     [SerializeField] private float _actualGodPoints;
     private float _goalPercentage;
@@ -63,10 +71,10 @@ public class GameManager : Singleton<GameManager>
     #region Unity Callbacks
     void Start()
     {
+        LocalPlayerCamera = Camera.main;
         _actualGodPointsGoal = _godPointsGoals[GameTimeManager.Day];
         ResetGodPoints();
         GameTimeManager.OnNewDay += NewDay;
-        Player1.OnDeath += PlayerDied;
         ActualGodState = GodState.Neutral;
         _rewardSpawner.Spawn(_spawnerDayRewards[0]);
         GameUIController.ShowCrafterText("Bienvenido! Esta mesa sirve para crear mejores objetos, prueba a meter este palo y una roca");
@@ -81,30 +89,37 @@ public class GameManager : Singleton<GameManager>
     public void AddGodPoints(float points)
     {
         ActualGodPoints += points;
-        UpdateGoalPercentage();
+        NetworkController.UpdatePoints(ActualGodPoints);
     }
     public void RemoveGodPoints(float points)
     {
         ActualGodPoints -= points;
-        UpdateGoalPercentage();
+        NetworkController.UpdatePoints(ActualGodPoints);
+    }
+    public void UpdateGoalPercentage()
+    {
+        _goalPercentage = ActualGodPoints / _actualGodPointsGoal;
+        GameUIController.UpdateGodPointsSlider(_goalPercentage);
     }
     public void StartTimelapse()
     {
-        GameTimeManager.Timelapse = true;
-        _playerCamera.gameObject.SetActive(false);
-        _timelapseCamera.gameObject.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if(PhotonNetwork.IsMasterClient)
+            GameTimeManager.Timelapse = true;
+        //TODO: UI informativa
     }
-    public void StopTimelapse()
+    public void StopTimelapseAndContinue()
     {
-        GameTimeManager.Timelapse = false;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameTimeManager.Timelapse = false;
+            GameTimeManager.TimeOn = true;
+            NetworkController.RemoteContinuePlaying();
+        }
         _timelapseCamera.gameObject.SetActive(false);   
-        _playerCamera.gameObject.SetActive(true);
-        Player1.gameObject.SetActive(true);
-        Player1.ResetPlayer();
+        LocalPlayerCamera.gameObject.SetActive(true);
+        LocalPlayer.gameObject.SetActive(true);
+        LocalPlayer.ResetPlayer();
         GameUIController.HideInGameMenu();
-        GameTimeManager.TimeOn = true;
     }
     public void UpdateGodState()
     {
@@ -136,6 +151,17 @@ public class GameManager : Singleton<GameManager>
             ActualGodState = GodState.Furious;
         }
     }
+    public void SetLocalPlayer()
+    {
+        if (LocalPlayer != null)
+        {
+            LocalPlayer.Local = true;
+            _localPlayerViewID = LocalPlayer.GetComponent<PhotonView>().ViewID;
+            LocalPlayer.PlayerCamera = GameManager.Instance.LocalPlayerCamera;
+            LocalPlayer.OnDeath += LocalPlayerDied;
+            NetworkController.AddRemotePlayer(_localPlayerViewID);
+        }
+    }
     public void ExitGame()
     {
         Application.Quit();
@@ -148,22 +174,44 @@ public class GameManager : Singleton<GameManager>
         ActualGodPoints = 0;
         UpdateGoalPercentage();
     }
-    private void PlayerDied()
+    private void LocalPlayerDied()
     {
-        if (ActualGodState == GodState.Furious)
-        {
-            EndGame();
-        }
-        else
-        {
+        NetworkController.IsAliveUpdate(false, _localPlayerViewID);
+
+        LocalPlayerCamera.gameObject.SetActive(false);
+        _timelapseCamera.gameObject.SetActive(true);
+
+        if(ActualGodState != GodState.Furious)
             GameUIController.DeathText.SetActive(true);
-            StartTimelapse();
-        }
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        NetworkController.CheckPlayersAlive();
     } 
-    private void UpdateGoalPercentage()
+    public void CheckPlayersAlive()
     {
-        _goalPercentage = ActualGodPoints / _actualGodPointsGoal;
-        GameUIController.UpdateGodPointsSlider(_goalPercentage);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            int alive = 0;
+            foreach (Player player in RemotePlayers)
+            {
+                if (player != null && player.Alive)
+                {
+                    alive++;
+                }
+            }
+            if (alive <= 0 && !LocalPlayer.Alive)
+            {
+                if (ActualGodState == GodState.Furious)
+                {
+                    EndGame();
+                }
+                else
+                {
+                    StartTimelapse();
+                }
+            }
+        }
     }
     private void EndGame()
     {
@@ -171,7 +219,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void NewDay(int day)
     {
-        if (GameTimeManager.Day >= _godPointsGoals.Length)
+        if (day >= _godPointsGoals.Length)
         {
             _actualGodPointsGoal = _godPointsGoals[_godPointsGoals.Length-1];
         }
@@ -180,12 +228,13 @@ public class GameManager : Singleton<GameManager>
             _actualGodPointsGoal = _godPointsGoals[GameTimeManager.Day];
         }
 
-        if (GameTimeManager.Timelapse)
+        if (GameTimeManager.Timelapse && PhotonNetwork.IsMasterClient)
         {
             GameTimeManager.TimeOn = false;
             GameUIController.DeathText.SetActive(false);
             GameUIController.ShowInGameMenu();
         }
+
         if (ActualGodState >= GodState.Neutral && day < _spawnerDayRewards.Length - 1)
         {
             if (_spawnerDayRewards[day]!=null)

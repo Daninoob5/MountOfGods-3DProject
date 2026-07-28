@@ -30,6 +30,7 @@ public class HealthSystem : MonoBehaviour
         }
     }
     public event Action OnDeath;
+    public bool Alive;
     #endregion
 
     #region Fields
@@ -41,6 +42,7 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         Health = MaxHealth;
+        Alive = true;
     }
     #endregion
 
@@ -61,10 +63,11 @@ public class HealthSystem : MonoBehaviour
             Debug.LogWarning("El valor de la curación recibida es negativo");
         //Efectos / sonido
     }
-    public  virtual void Die()
+    public virtual void Die()
     {
-        OnDeath?.Invoke();
+        Alive = false;
         _onFireCharges = 0;
+        OnDeath?.Invoke();
         gameObject.SetActive(false);
     }
     public void Burn(int intensity)

@@ -51,9 +51,9 @@ MonoBehaviour:
   Type: 1
   Owner: {fileID: 0}
   _godPoints: 5
-  _holdingDistance: 2
-  _followSpeed: 5
   _rb: {fileID: 0}
+  _heldRotation: {x: 0, y: 0, z: 0}
+  _verticalOffSet: 0
 --- !u!33 &1309175737979125916
 MeshFilter:
   m_ObjectHideFlags: 0

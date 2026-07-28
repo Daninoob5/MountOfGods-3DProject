@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 30
+  Alive: 0
   _health: 0
   Type: 0
   _spawns:

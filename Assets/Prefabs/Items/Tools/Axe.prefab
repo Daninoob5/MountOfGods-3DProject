@@ -207,9 +207,9 @@ MonoBehaviour:
   Type: 4
   Owner: {fileID: 0}
   _godPoints: 25
-  _followSpeed: 20
   _rb: {fileID: 0}
   _heldRotation: {x: 90, y: -90, z: 0}
+  _verticalOffSet: 0
   Damage: 5
 --- !u!1 &6737161607475736915
 GameObject:

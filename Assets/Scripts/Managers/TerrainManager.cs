@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static GameManager;
 using Random = UnityEngine.Random;
 
@@ -97,7 +98,7 @@ public class TerrainManager : MonoBehaviour
             Vector2Int randomPosition = _availablePositions[Random.Range(0, _availablePositions.Count)];
             int randomPrefabIndex = Random.Range(0, _terrains.Length);
             //Generación del terreno
-            GenerateNewPlot(randomPosition, randomPrefabIndex);
+            GameManager.Instance.NetworkController.GenerateTerrain(randomPosition, randomPrefabIndex);
         }
     }
     #endregion
@@ -108,19 +109,18 @@ public class TerrainManager : MonoBehaviour
         GodState actualGodState = GameManager.Instance.ActualGodState;
         switch (actualGodState)
         {
-            case GodState.Delighted: Debug.Log("Spawneando terreno porque GodState = Delighted");
+            case GodState.Delighted: 
                     GenerateRandomPlot();
                     if (Random.Range(0, 3) == 2)
                         GenerateRandomPlot();
                 break;
-            case GodState.Satisfied: Debug.Log("Spawneando terreno porque GodState = Satisfied");
+            case GodState.Satisfied: 
                     GenerateRandomPlot();
                 break;
             case GodState.Neutral: 
                         if(Random.Range(0,3) == 2)
                         {
                             GenerateRandomPlot();
-                            Debug.Log("Spawneando terreno porque GodState = Neutral");
                         }   
                 break;
             case GodState.Unsatisfied:

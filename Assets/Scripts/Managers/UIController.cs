@@ -57,6 +57,7 @@ public class UIController : MonoBehaviour
     {
         _interface.SetActive(false);
         _inGameMenu.SetActive(true);
+        DeathText.SetActive(false);
         GameManager.Instance.GameAudioController.PlayMusic(false);
     }
     public void HideInGameMenu()

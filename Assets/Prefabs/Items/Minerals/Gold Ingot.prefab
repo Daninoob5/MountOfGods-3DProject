@@ -98,6 +98,8 @@ GameObject:
   - component: {fileID: -5425032382526402770}
   - component: {fileID: 8374792641031911389}
   - component: {fileID: 9146671607175701633}
+  - component: {fileID: -8444737045378284739}
+  - component: {fileID: -5793075835855028974}
   m_Layer: 0
   m_Name: Gold Ingot
   m_TagString: Untagged
@@ -136,9 +138,9 @@ MonoBehaviour:
   Type: 8
   Owner: {fileID: 0}
   _godPoints: 150
-  _followSpeed: 6
   _rb: {fileID: 0}
   _heldRotation: {x: 0, y: 0, z: 0}
+  _verticalOffSet: 0
 --- !u!54 &8374792641031911389
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -187,3 +189,42 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.39346695, y: 0.10048008, z: 0.17106628}
   m_Center: {x: 0, y: 0.035467625, z: 0}
+--- !u!114 &-8444737045378284739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985539399558590360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: -5793075835855028974}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-5793075835855028974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985539399558590360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1

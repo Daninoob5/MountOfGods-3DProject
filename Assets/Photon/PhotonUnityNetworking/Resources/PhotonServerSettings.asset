@@ -39,6 +39,15 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - RPC_GenerateTerrain
+  - RPC_NewDay
+  - RPC_UpdatePoints
+  - RPC_ContinuePlaying
+  - RPC_RemoteContinuePlaying
+  - RPC_AddRemotePlayer
+  - RPC_CheckPlayersAlive
+  - RPC_IsAliveUpdate
+  - RPC_ExitGameAll
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

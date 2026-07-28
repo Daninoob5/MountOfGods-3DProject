@@ -136,9 +136,9 @@ MonoBehaviour:
   Type: 7
   Owner: {fileID: 0}
   _godPoints: 60
-  _followSpeed: 6
   _rb: {fileID: 0}
   _heldRotation: {x: 0, y: 0, z: 0}
+  _verticalOffSet: 0
 --- !u!54 &8374792641031911389
 Rigidbody:
   m_ObjectHideFlags: 0
